@@ -1,48 +1,37 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+import streamlit as st
 
-app = Flask(__name__)
-CORS(app)
+# Titolo dell'app
+st.title("🧮 Calcolatrice Semplice")
+st.write("Esegui somme e sottrazioni in modo facile!")
 
+# Sezione Somma
+st.header("➕ Somma")
+col1, col2 = st.columns(2)
 
-@app.route('/calculate', methods=['POST'])
-def calculate():
-    """
-    Simple test: takes two numbers and does basic math
-    """
-    # Get the data from Squarespace
-    data = request.json
+with col1:
+    num1_somma = st.number_input("Primo numero", value=0.0, key="somma1")
+with col2:
+    num2_somma = st.number_input("Secondo numero", value=0.0, key="somma2")
 
-    # Get the two numbers
-    number1 = float(data.get('number1', 0))
-    number2 = float(data.get('number2', 0))
+if st.button("Calcola Somma", type="primary"):
+    risultato_somma = num1_somma + num2_somma
+    st.success(f"✅ Risultato: {num1_somma} + {num2_somma} = **{risultato_somma}**")
 
-    # Do simple calculations
-    sum_result = number1 + number2
-    difference = number1 - number2
-    product = number1 * number2
+st.divider()
 
-    # Avoid division by zero
-    if number2 != 0:
-        division = number1 / number2
-    else:
-        division = "Cannot divide by zero"
+# Sezione Sottrazione
+st.header("➖ Sottrazione")
+col3, col4 = st.columns(2)
 
-    # Return all results
-    return jsonify({
-        'number1': number1,
-        'number2': number2,
-        'sum': sum_result,
-        'difference': difference,
-        'product': product,
-        'division': division
-    })
+with col3:
+    num1_sottrazione = st.number_input("Primo numero", value=0.0, key="sott1")
+with col4:
+    num2_sottrazione = st.number_input("Secondo numero", value=0.0, key="sott2")
 
+if st.button("Calcola Sottrazione", type="primary"):
+    risultato_sottrazione = num1_sottrazione - num2_sottrazione
+    st.success(f"✅ Risultato: {num1_sottrazione} - {num2_sottrazione} = **{risultato_sottrazione}**")
 
-@app.route('/')
-def home():
-    return "Simple Test Calculator API is running! ✅"
-
-
-if __name__ == '__main__':
-    app.run()
+# Footer
+st.divider()
+st.caption("💡 Inserisci i numeri e clicca sul pulsante per vedere il risultato!")
