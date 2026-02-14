@@ -37,10 +37,12 @@ if st.button("Calcola Sottrazione", type="primary"):
 
 x = np.linspace(0, 1, 1000)
 y = np.random.randn(1000)
-df = pd.DataFrame([x, y], columns=["x", "y"])
+df = pd.DataFrame([], columns=["x", "y"])
+df["x"] = x
+df["y"] = y
 
 
-st.line_chart(df)
+st.bar_chart(df, x="x", y="y")
 
 # Footer
 st.divider()
