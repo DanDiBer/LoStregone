@@ -1,4 +1,6 @@
 import streamlit as st
+import pandas as pd
+import numpy as np
 
 # Titolo dell'app
 st.title("🧮 Calcolatrice Semplice")
@@ -31,6 +33,11 @@ with col4:
 if st.button("Calcola Sottrazione", type="primary"):
     risultato_sottrazione = num1_sottrazione - num2_sottrazione
     st.success(f"✅ Risultato: {num1_sottrazione} - {num2_sottrazione} = **{risultato_sottrazione}**")
+
+
+x = np.linspace(0, 1, 1000)
+s = np.sin(x)
+st.line_chart(x, s)
 
 # Footer
 st.divider()
