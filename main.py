@@ -36,7 +36,7 @@ if st.button("Calcola Sottrazione", type="primary"):
 
 
 x = np.linspace(0, 1, 1000)
-y = np.randn(1000)
+y = np.randn((1000,1))
 df = pd.DataFrame([x, y], columns=["x", "y"])
 
 
